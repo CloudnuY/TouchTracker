@@ -11,6 +11,9 @@
 		61746ACB1DA4FD0F00C2C62F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61746ACA1DA4FD0F00C2C62F /* AppDelegate.m */; };
 		61746ACD1DA4FD0F00C2C62F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61746ACC1DA4FD0F00C2C62F /* Assets.xcassets */; };
 		61746AD01DA4FD0F00C2C62F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61746ACE1DA4FD0F00C2C62F /* LaunchScreen.storyboard */; };
+		61746AD91DA4FF6A00C2C62F /* CLDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 61746AD81DA4FF6A00C2C62F /* CLDLine.m */; };
+		61746ADC1DA4FFB600C2C62F /* CLDDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61746ADB1DA4FFB600C2C62F /* CLDDrawView.m */; };
+		61746ADF1DA5002300C2C62F /* CLDDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61746ADE1DA5002300C2C62F /* CLDDrawViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,12 @@
 		61746ACC1DA4FD0F00C2C62F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61746ACF1DA4FD0F00C2C62F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61746AD11DA4FD0F00C2C62F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61746AD71DA4FF6A00C2C62F /* CLDLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDLine.h; sourceTree = "<group>"; };
+		61746AD81DA4FF6A00C2C62F /* CLDLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDLine.m; sourceTree = "<group>"; };
+		61746ADA1DA4FFB600C2C62F /* CLDDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDDrawView.h; sourceTree = "<group>"; };
+		61746ADB1DA4FFB600C2C62F /* CLDDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDDrawView.m; sourceTree = "<group>"; };
+		61746ADD1DA5002300C2C62F /* CLDDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDDrawViewController.h; sourceTree = "<group>"; };
+		61746ADE1DA5002300C2C62F /* CLDDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDDrawViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +64,13 @@
 			children = (
 				61746AC91DA4FD0F00C2C62F /* AppDelegate.h */,
 				61746ACA1DA4FD0F00C2C62F /* AppDelegate.m */,
+				61746AD71DA4FF6A00C2C62F /* CLDLine.h */,
+				61746AD81DA4FF6A00C2C62F /* CLDLine.m */,
+				61746ADA1DA4FFB600C2C62F /* CLDDrawView.h */,
+				61746ADB1DA4FFB600C2C62F /* CLDDrawView.m */,
+				61746ADD1DA5002300C2C62F /* CLDDrawViewController.h */,
+				61746ADE1DA5002300C2C62F /* CLDDrawViewController.m */,
 				61746ACC1DA4FD0F00C2C62F /* Assets.xcassets */,
-				61746ACE1DA4FD0F00C2C62F /* LaunchScreen.storyboard */,
-				61746AD11DA4FD0F00C2C62F /* Info.plist */,
 				61746AC61DA4FD0F00C2C62F /* Supporting Files */,
 			);
 			path = TouchTracker;
@@ -66,6 +79,8 @@
 		61746AC61DA4FD0F00C2C62F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61746ACE1DA4FD0F00C2C62F /* LaunchScreen.storyboard */,
+				61746AD11DA4FD0F00C2C62F /* Info.plist */,
 				61746AC71DA4FD0F00C2C62F /* main.m */,
 			);
 			name = "Supporting Files";
@@ -97,6 +112,7 @@
 		61746ABB1DA4FD0F00C2C62F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CLD;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Cloud;
 				TargetAttributes = {
@@ -142,8 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61746ADC1DA4FFB600C2C62F /* CLDDrawView.m in Sources */,
 				61746ACB1DA4FD0F00C2C62F /* AppDelegate.m in Sources */,
+				61746ADF1DA5002300C2C62F /* CLDDrawViewController.m in Sources */,
 				61746AC81DA4FD0F00C2C62F /* main.m in Sources */,
+				61746AD91DA4FF6A00C2C62F /* CLDLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +274,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7W93B9769P;
 				INFOPLIST_FILE = TouchTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloud.TouchTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -267,6 +287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7W93B9769P;
 				INFOPLIST_FILE = TouchTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloud.TouchTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +313,7 @@
 				61746AD61DA4FD0F00C2C62F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
