@@ -2,6 +2,7 @@
 iOS Programming 4th edition, Chapter 12
 > 触摸事件与 UIResponder
 
+[![Build Status](https://travis-ci.org/CloudnuY/TouchTracker.svg?branch=master)](https://travis-ci.org/CloudnuY/TouchTracker)
 ![Language](https://img.shields.io/badge/Language-Objective--C-green.svg)
 ![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000?style=flat-square)
 
