@@ -25,7 +25,7 @@
     if (self) {
         self.linesInProgress = [[NSMutableDictionary alloc] init];
         self.finishedLines = [[NSMutableArray alloc] init];
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.multipleTouchEnabled = YES; //多点触摸
     }
     return self;
