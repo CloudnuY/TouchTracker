@@ -11,8 +11,9 @@
 
 @interface CLDDrawView ()
 
-@property (nonatomic, strong) CLDLine *currentLine;
+//@property (nonatomic, strong) CLDLine *currentLine;
 @property (nonatomic, strong) NSMutableArray *finishedLines;
+@property (nonatomic, strong) NSMutableDictionary *linesInProgress;
 
 @end
 
@@ -22,9 +23,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.linesInProgress = [[NSMutableDictionary alloc] init];
         self.finishedLines = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor grayColor];
-        // self.multipleTouchEnabled = YES; //多点触摸
+        self.multipleTouchEnabled = YES; //多点触摸
     }
     return self;
 }
@@ -44,37 +46,64 @@
     for (CLDLine *line in self.finishedLines) {
         [self strokeLine:line];
     }
-    if (self.currentLine) {
-        [[UIColor redColor] set];
-        [self strokeLine:self.currentLine];
+
+    [[UIColor redColor] set];
+    for (NSValue *key in self.linesInProgress) {
+        [self strokeLine:self.linesInProgress[key]];
     }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
+
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     
-    CGPoint location = [t locationInView:self];
-    self.currentLine = [[CLDLine alloc] init];
-    self.currentLine.begin = location;
-    self.currentLine.end = location;
+    for (UITouch *t in touches) {
+        CGPoint location = [t locationInView:self];
+        
+        CLDLine *line = [[CLDLine alloc] init];
+        line.begin = location;
+        line.end = location;
+        
+        NSValue *key = [NSValue valueWithNonretainedObject:t];
+        self.linesInProgress[key] = line;
+    }
     
     [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
-    CGPoint location = [t locationInView:self];
     
-    self.currentLine.end = location;
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    for (UITouch *t in touches) {
+        NSValue *key = [NSValue valueWithNonretainedObject:t];
+        CLDLine *line = self.linesInProgress[key];
+        
+        line.end = [t locationInView:self];
+    }
     
     [self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.finishedLines addObject:self.currentLine];
     
-    self.currentLine = nil;
+    for (UITouch *t in touches) {
+        NSValue *key = [NSValue valueWithNonretainedObject:t];
+        CLDLine *line = self.linesInProgress[key];
+        
+        [self.finishedLines addObject:line];
+        [self.linesInProgress removeObjectForKey:key];
+    }
+    [self setNeedsDisplay];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     
+    for (UITouch *t in touches) {
+        NSValue *key = [NSValue valueWithNonretainedObject:t];
+        [self.linesInProgress removeObjectForKey:key];
+    }
     [self setNeedsDisplay];
 }
 
