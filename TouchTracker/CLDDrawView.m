@@ -27,6 +27,11 @@
         self.finishedLines = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         self.multipleTouchEnabled = YES; //多点触摸
+        
+        UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+        doubleTapRecognizer.numberOfTapsRequired = 2;
+        
+        [self addGestureRecognizer:doubleTapRecognizer];
     }
     return self;
 }
@@ -52,6 +57,16 @@
         [self strokeLine:self.linesInProgress[key]];
     }
 }
+
+- (void)doubleTap:(UIGestureRecognizer *)gr {
+    NSLog(@"Recognized Double Tap");
+    
+    [self.linesInProgress removeAllObjects];
+    [self.finishedLines removeAllObjects];
+    [self setNeedsDisplay];
+}
+
+#pragma mark - touch
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 
