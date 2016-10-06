@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: TouchTracker.xcodeproj # path to your xcodeproj folder
+xcode_scheme: TouchTrackerTest
