@@ -71,6 +71,9 @@
     return nil;
 }
 
+
+#pragma mark - Overwrite function
+
 - (void)drawRect:(CGRect)rect {
     [[UIColor blackColor] set];
     for (CLDLine *line in self.finishedLines) {
@@ -88,6 +91,13 @@
     }
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+
+#pragma mark - Selector
+
 - (void)doubleTap:(UIGestureRecognizer *)gr {
     NSLog(@"Recognized Double Tap");
     
@@ -101,8 +111,27 @@
     CGPoint point = [gr locationInView:self];
     self.selectedLine = [self lineAtPoint:point];
     
+    if (self.selectedLine) {
+        [self becomeFirstResponder];
+        
+        UIMenuController *menu = [UIMenuController sharedMenuController];
+        UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteLine:)];
+        menu.menuItems = @[deleteItem];
+        
+        [menu setTargetRect:CGRectMake(point.x, point.y, 2, 2) inView:self];
+        [menu setMenuVisible:YES animated:YES];
+    } else {
+        [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
+    }
+    
     [self setNeedsDisplay];
 }
+
+- (void)deleteLine:(id)sender {
+    [self.finishedLines removeObject:self.selectedLine];
+    [self setNeedsDisplay];
+}
+
 
 #pragma mark - touch
 
